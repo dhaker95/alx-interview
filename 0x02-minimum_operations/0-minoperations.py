@@ -1,29 +1,26 @@
 #!/usr/bin/python3
 
-"""
-    Method that determines the number of minmum operations given n characters
-"""
+'''
+Given a number n, write a method that calculates
+the fewest number of operations needed to result in
+exactly n H characters in the file.
+'''
 
 
 def minOperations(n):
-    """
-        A function that calculates the fewest number of operations
-        needed to give a result of exactly n H characters in a file
-        args: n: Number of characters to be displayed
-        return:
-               number of min operations
-    """
-
-    now = 1
-    start = 0
-    counter = 0
-    while now < n:
-        remainder = n - now
-        if (remainder % now == 0):
-            start = now
-            now += start
-            counter += 2
-        else:
-            now += start
-            counter += 1
-sh: 1: :wq: not found
+    '''
+    returns min operations to get n Hs
+    '''
+    result = 0
+    index = 2
+    if n < 2:
+        return 0
+    while (index < n + 1):
+        # Check if problem is evenly brekadownable
+        while n % index == 0:
+            # If so add number of smaller problems to the result
+            result += index
+            # Create the smaller problem needed to get to n
+            n /= index
+        index += 1
+    return result
